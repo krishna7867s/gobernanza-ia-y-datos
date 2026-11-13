@@ -1,34 +1,34 @@
-# ADR-0002: La IA asiste en la detección de pausas y consultas, pero la confirmación y las decisiones laborales son 100% humanas
+# ADR-0002: El recomendador sugiere cafés y maridajes, pero la compra y las reservas son 100% decisión humana
 
 - Estado: Aceptado
 - Fecha: 2026-11-13
-- Decide: Krishna Nahiel Moya Cervantes, Líder de Desarrollo y Gobernanza
+- Decide: Krishna Nahiel Moya Cervantes, Propietaria y Líder de Proyecto
 
 ## Contexto
 
-En Paws & Pause (C&R International), los empleados de oficina realizan pausas activas periódicas frente a su computadora para prevenir el sedentarismo y la fatiga muscular. La aplicación incorpora dos componentes inteligentes: un modelo de visión por computadora para asistir en la verificación de posturas ergonómicas y un agente conversacional para resolver dudas sobre el programa y la empresa. Existía la necesidad de delimitar qué puede decidir la tecnología para evitar discriminación, sanciones injustas o invasión indebida a la privacidad del trabajador.
+En el sitio web de Café Alma & Grano, los clientes buscan descubrir cafés de especialidad de Costa Rica según la hora del día y su perfil de sabor preferido. El sitio incorpora una herramienta interactiva ("Recomendador Barista") que guía al usuario hacia la bebida ideal. Para proteger la autonomía del consumidor y evitar cobros imprevistos o sesgos en el servicio, se requiere definir con precisión qué decide el sistema algorítmico y qué queda bajo control de las personas.
 
 ## Decisión
 
-Se establece que la inteligencia artificial opera únicamente en calidad de asistente informativo y de retroalimentación en tiempo real:
+Se establece que el componente algorítmico opera únicamente como asistente consultivo y no vinculante:
 
-1. **Detección de posturas (MoveNet):** El modelo evalúa las coordenadas de articulaciones en el navegador para sugerir que la pose es correcta. Sin embargo, la IA **nunca confirma automáticamente una pausa ni descarta a un usuario**. La persona siempre tiene el control final de disparar la verificación o bien seleccionar el registro manual sin cámara (`method: 'manual'`).
-2. **Impacto laboral cero:** Los resultados de las pausas activas, el nivel de la mascota virtual y el uso de la cámara se mantienen con carácter lúdico y motivacional. Ningún algoritmo de IA clasifica, califica, sanciona ni condiciona la continuidad laboral ni las evaluaciones de desempeño del trabajador.
-3. **Agente conversacional (Gemini en n8n):** El chat flotante solo responde preguntas institucionales y de uso del sistema basadas en un prompt de sistema acotado. No ejecuta transacciones, no aprueba solicitudes de vacaciones ni modifica datos de usuarios.
+1. **Recomendaciones de café y maridaje:** El sistema analiza las variables ingresadas por el cliente (momento del día, notas aromáticas deseadas) y devuelve una sugerencia de método de extracción (ej. V60, Chemex, espresso) con su repostería recomendada.
+2. **Decisión de compra y consumo soberana del cliente:** La sugerencia nunca ejecuta una compra automática, no carga montos a tarjetas ni compromete al cliente. El usuario es libre de aceptar la sugerencia o pedir cualquier otro producto de la carta.
+3. **Gestión de reservas y asignación de mesas:** La confirmación de mesas se basa estrictamente en la disponibilidad física del local. Ningún algoritmo filtra, descarta o discrimina clientes por edad, origen o frecuencia de consumo.
+4. **Precios transparentes y sin discriminación dinámica:** Todos los precios son fijos, públicos y estandarizados en el menú, prohibiendo el aumento algorítmico de precios según el perfil del usuario.
 
 ## Alternativas descartadas
 
-- **Validación automática obligatoria por visión artificial:** Descartada porque forzar a la IA a decidir si un empleado cumplió su deber laboral generaría falsos negativos por mala iluminación, cámaras de baja resolución o condiciones físicas particulares, además de violentar la autonomía del usuario.
-- **Calificación algorítmica de productividad o salud:** Descartada rotundamente porque delegar diagnósticos o evaluaciones laborales en modelos automatizados viola los principios éticos y regulatorios de protección al trabajador.
+- **Pedidos y cargos automáticos por recomendación:** Descartado porque violaría la confianza del cliente y generaría fricciones por consumos no deseados.
+- **Tarificación dinámica con IA según afluencia:** Descartada por atentar contra la transparencia y la equidad en el trato a los comensales habituales de la cafetería.
 
 ## Consecuencias
 
-Se garantiza que el empleado mantiene el control y la tranquilidad de que la herramienta es un apoyo ergonómico y no un instrumento de vigilancia patronal. Como consecuencia técnica, se debe mantener y dar soporte al flujo de registro manual alternativo (`method: 'manual'`), el cual otorga puntaje sin exigir cámara web, reduciendo fricciones de accesibilidad.
+Se garantiza una experiencia gastronómica cálida, predecible y respetuosa de la autonomía del cliente. Como contrapartida técnica, la conversión comercial requiere la interacción manual del usuario en el formulario de reservas o en la barra, garantizando el consentimiento pleno.
 
 ## Cómo se verifica
 
-La separación de responsabilidades y la confirmación humana se verifican en:
-- `src/features/pauses/StretchCheck.jsx`: la interfaz requiere una acción explícita del usuario para completar la pausa y ofrece un botón permanente de "Registrar manualmente".
-- `server/index.js`: el endpoint `POST /api/pauses` valida que el registro provenga de una acción confirmada por el usuario (indicando método `camera` o `manual`).
-- `tests/privacyAndCompliance.test.mjs`: suite de pruebas automatizadas que valida la disponibilidad del modo manual y la ausencia de penalizaciones por no usar cámara.
-
+La confirmación humana y la delimitación algorítmica se verifican en:
+- `index.html`: el Recomendador Barista (`function recomendarCafe()`) únicamente actualiza el texto sugerido en pantalla sin enviar peticiones transaccionales de cobro.
+- `index.html`: el formulario de reserva (`#reservaForm`) exige confirmación explícita del cliente y aceptación de términos antes de procesar la solicitud.
+- Modal de Términos y Condiciones en el sitio: estipula expresamente que las sugerencias son informativas y no generan obligación contractual automática.

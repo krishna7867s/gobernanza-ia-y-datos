@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Alma & Grano — Especialidad y Repostería Artesanal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #faf7f2;
+      --bg-card: #ffffff;
+      --coffee-dark: #231714;
+      --coffee-medium: #4a342c;
+      --coffee-warm: #8c5d43;
+      --terracotta: #c47b59;
+      --caramel: #d99b66;
+      --sage-light: #e8ede7;
+      --border-subtle: #ebdcd0;
+      --text-muted: #6e6259;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--coffee-dark);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Navegación */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 247, 242, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--coffee-dark);
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: var(--coffee-warm);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--coffee-medium);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--terracotta);
+    }
+
+    .btn-reservar {
+      background: var(--coffee-dark);
+      color: #fff !important;
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-reservar:hover {
+      background: var(--coffee-warm);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem 3.5rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f1e4db;
+      color: var(--coffee-warm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: 3.2rem;
+      line-height: 1.15;
+      color: var(--coffee-dark);
+      margin-bottom: 1.25rem;
+      font-weight: 700;
+    }
+
+    .hero h1 span {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      color: #fff;
+      padding: 0.85rem 1.75rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(196, 123, 89, 0.35);
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: #b26947;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--coffee-dark);
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid var(--border-subtle);
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: #f3ece4;
+    }
+
+    .hero-image-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 16px 36px rgba(35, 23, 20, 0.05);
+      position: relative;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 20px;
+      background: #e7ded5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #eaddcf, #d2bfae);
+    }
+
+    .hero-img-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-img-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--coffee-dark);
+      max-width: 320px;
+    }
+
+    /* Menu Section */
+    .section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-serif);
+      font-size: 2.35rem;
+      color: var(--coffee-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .menu-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 1.75rem;
+      box-shadow: 0 4px 18px rgba(35, 23, 20, 0.03);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(35, 23, 20, 0.08);
+    }
+
+    .menu-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--terracotta);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: var(--coffee-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .menu-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px dashed var(--border-subtle);
+      padding-top: 1rem;
+    }
+
+    .menu-price {
+      font-weight: 700;
+      color: var(--coffee-dark);
+      font-size: 1.15rem;
+    }
+
+    /* Barista Recomendador Interactivo */
+    .recommender-card {
+      background: linear-gradient(145deg, #ffffff, #f7f0e8);
+      border: 1px solid var(--border-subtle);
+      border-radius: 28px;
+      padding: 2.75rem;
+      box-shadow: 0 12px 30px rgba(35, 23, 20, 0.05);
+      margin: 2rem 0;
+    }
+
+    .recommender-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--coffee-medium);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-select, .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--coffee-dark);
+    }
+
+    .result-box {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--border-subtle);
+      text-align: center;
+    }
+
+    .result-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: #f1e4db;
+      color: var(--terracotta);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .result-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--coffee-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .result-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Modales */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(35, 23, 20, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2.5rem;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: #f4ede6;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--coffee-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content h3 {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      color: var(--coffee-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-body {
+      font-size: 0.95rem;
+      color: #4a433d;
+      line-height: 1.7;
+    }
+
+    .modal-body h4 {
+      font-size: 1.1rem;
+      color: var(--coffee-dark);
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--coffee-dark);
+      color: #e5ded7;
+      padding: 4rem 1.5rem 2.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand h4 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-brand p {
+      color: #a89d94;
+      font-size: 0.95rem;
+      max-width: 380px;
+    }
+
+    .footer-col h5 {
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col a {
+      color: #a89d94;
+      text-decoration: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--caramel);
+    }
+
+    .footer-bottom {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #8c8279;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 2.5rem;
+      }
+      .recommender-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navegación -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-logo">A</div>
+        <span class="brand-title">Café Alma & Grano</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#menu">Menú</a></li>
+          <li><a href="#origen">Nuestro Origen</a></li>
+          <li><a href="#barista">Recomendador</a></li>
+          <li><a href="#reservas" class="btn-reservar">Reservar mesa</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <div class="hero-badge">☕ Cosecha Especial · Tarrazú & Naranjo</div>
+      <h1>Café de origen y momentos que se <span>saborean lento</span>.</h1>
+      <p>Un espacio acogedor en el corazón de la ciudad. Tostado artesanal, repostería recién horneada y la calidez de sentirte como en casa.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-primary">Ver Menú del Día</a>
+        <a href="#barista" class="btn-secondary">Encontrar mi café</a>
+      </div>
+    </div>
+    <div class="hero-image-card">
+      <div class="hero-img">
+        <div class="hero-img-icon">🪴☕</div>
+        <p class="hero-img-quote">«El café perfecto no se apura: se cultiva con paciencia y se sirve con cariño.»</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menú -->
+  <section class="section" id="menu">
+    <div class="section-header">
+      <h2>Nuestra Carta Seleccionada</h2>
+      <p>Granos 100% arábica costarricense de micro-lotes familiares, infusionados con precisión y pasión artesanal.</p>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div>
+          <span class="menu-tag">Especialidad</span>
+          <h3>Flat White de la Casa</h3>
+          <p class="menu-desc">Doble ristretto de Naranjo con leche vaporizada a textura micro-cremosa y notas a chocolate con avellana.</p>
+        </div>
+        <div class="menu-footer">
+          <span class="menu-price">₡2.600</span>
+          <button class="btn-secondary" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;" onclick="pedirBebida('Flat White de la Casa')">Elegir</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div>
+          <span class="menu-tag">Filtrado Manual</span>
+          <h3>V60 Geisha Tarrazú</h3>
+          <p class="menu-desc">Extracción lenta por goteo que resalta acidez cítrica brillante, aroma a jazmín y final dulce de durazno.</p>
+        </div>
+        <div class="menu-footer">
+          <span class="menu-price">₡3.200</span>
+          <button class="btn-secondary" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;" onclick="pedirBebida('V60 Geisha Tarrazú')">Elegir</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div>
+          <span class="menu-tag">Firma Fría</span>
+          <h3>Cold Brew Almendra & Miel</h3>
+          <p class="menu-desc">Maceración en frío por 18 horas con granos de tueste medio, toque de miel pura de abeja y leche de almendra.</p>
+        </div>
+        <div class="menu-footer">
+          <span class="menu-price">₡2.900</span>
+          <button class="btn-secondary" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;" onclick="pedirBebida('Cold Brew Almendra & Miel')">Elegir</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div>
+          <span class="menu-tag">Horno Propio</span>
+          <h3>Croissant de Cardamomo</h3>
+          <p class="menu-desc">Masa hojaldrada tradicional con mantequilla de pastura y especias aromáticas, horneado cada mañana.</p>
+        </div>
+        <div class="menu-footer">
+          <span class="menu-price">₡1.950</span>
+          <button class="btn-secondary" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;" onclick="pedirBebida('Croissant de Cardamomo')">Elegir</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recomendador Barista Inteligente -->
+  <section class="section" id="barista" style="background: #f4ede4; border-radius: 32px;">
+    <div class="section-header">
+      <h2>Recomendador de Café Alma</h2>
+      <p>Decinos qué te apetece hoy y nuestro sistema te sugerirá el café y maridaje perfecto para tu momento.</p>
+    </div>
+
+    <div class="recommender-card">
+      <div class="recommender-grid">
+        <div>
+          <div class="form-group">
+            <label for="momento">¿En qué momento del día nos visitas?</label>
+            <select id="momento" class="form-select">
+              <option value="manana">Mañana activa (necesito energía y claridad)</option>
+              <option value="tarde">Tarde tranquila (desconexión y lectura)</option>
+              <option value="noche">Atardecer sin prisa (relajante, poco o sin cafeína)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="perfil">¿Qué notas de sabor prefieres?</label>
+            <select id="perfil" class="form-select">
+              <option value="chocolate">Intenso, chocolatoso y con cuerpo denso</option>
+              <option value="frutal">Frutal, cítrico, floral y aromático</option>
+              <option value="dulce">Dulce, avainillado y con leche sedosa</option>
+            </select>
+          </div>
+
+          <button class="btn-primary" style="width: 100%; margin-top: 0.75rem;" onclick="recomendarCafe()">Obtener mi recomendación</button>
+        </div>
+
+        <div class="result-box" id="cajaResultado">
+          <span class="result-badge">Recomendación Personalizada</span>
+          <h3 class="result-title" id="resultadoNombre">Flat White con notas de Cacao</h3>
+          <p class="result-desc" id="resultadoDesc">Ideal para tu mañana: balance perfecto entre la potencia del espresso y la suavidad láctea.</p>
+          <button class="btn-secondary" onclick="abrirReservaConRecomendacion()">Pedir en mi mesa</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservas -->
+  <section class="section" id="reservas">
+    <div class="section-header">
+      <h2>Reservá tu Espacio</h2>
+      <p>Vení a trabajar tranquilo, leer o compartir un café entre amigos. Tus datos están siempre seguros con nosotros.</p>
+    </div>
+
+    <div style="max-width: 620px; margin: 0 auto; background: #fff; padding: 2.5rem; border-radius: 24px; border: 1px solid var(--border-subtle); box-shadow: 0 10px 30px rgba(35, 23, 20, 0.04);">
+      <form id="reservaForm" onsubmit="enviarReserva(event)">
+        <div class="form-group">
+          <label for="resNombre">Nombre y Apellido</label>
+          <input type="text" id="resNombre" class="form-input" placeholder="Ej. Ana Morales" required>
+        </div>
+
+        <div class="form-group">
+          <label for="resEmail">Correo Electrónico</label>
+          <input type="email" id="resEmail" class="form-input" placeholder="tucorreo@ejemplo.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="resPersonas">Cantidad de personas y fecha</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <select id="resPersonas" class="form-select">
+              <option value="1">1 persona (zona de trabajo)</option>
+              <option value="2">2 personas</option>
+              <option value="4">3 a 4 personas</option>
+              <option value="mas">5 o más personas</option>
+            </select>
+            <input type="date" id="resFecha" class="form-input" required>
+          </div>
+        </div>
+
+        <div class="form-group" style="display: flex; gap: 0.6rem; align-items: flex-start; margin-top: 1.5rem;">
+          <input type="checkbox" id="aceptoTerminos" style="margin-top: 0.25rem;" required>
+          <label for="aceptoTerminos" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 400;">
+            Acepto los <a href="#" onclick="abrirModal('modalTerminos'); return false;" style="color: var(--terracotta); text-decoration: underline;">Términos y Condiciones</a> y la <a href="#" onclick="abrirModal('modalPrivacidad'); return false;" style="color: var(--terracotta); text-decoration: underline;">Política de Privacidad de Datos (Ley 8968)</a>.
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Confirmar Reserva</button>
+      </form>
+      <div id="alertaConfirmacion" style="display: none; margin-top: 1.25rem; padding: 1rem; background: var(--sage-light); border-radius: 12px; color: var(--coffee-dark); font-size: 0.95rem; text-align: center;">
+        🎉 ¡Reserva confirmada con éxito! Te hemos enviado un correo con los detalles de tu mesa.
+      </div>
+    </div>
+  </section>
+
+  <!-- Modales Legales -->
+  <!-- Modal Términos y Condiciones -->
+  <div class="modal-overlay" id="modalTerminos">
+    <div class="modal-content">
+      <button class="modal-close" onclick="cerrarModal('modalTerminos')">✕</button>
+      <h3>Términos y Condiciones de Servicio</h3>
+      <div class="modal-body">
+        <p><strong>Última actualización:</strong> 13 de noviembre de 2026</p>
+        <p>Bienvenido a <strong>Café Alma & Grano</strong>. Al reservar una mesa, realizar consultas en nuestro recomendador o visitar nuestras instalaciones, aceptas los siguientes términos:</p>
+
+        <h4>1. Reservas y Asistencia</h4>
+        <p>Las reservas se confirman automáticamente vía correo electrónico. Mantenemos tu mesa reservada con 15 minutos de tolerancia. No cobramos cargos por cancelación o reprogramación.</p>
+
+        <h4>2. Recomendador Asistido por Algoritmo</h4>
+        <p>Nuestro sistema de recomendaciones sugiere maridajes y métodos de extracción de acuerdo con los gustos ingresados. <strong>La decisión de compra es 100% humana</strong>: el sistema nunca genera cobros automáticos ni te obliga a pedir el producto sugerido.</p>
+
+        <h4>3. Convivencia y Espacio de Trabajo</h4>
+        <p>Contamos con wifi de alta velocidad y conexiones eléctricas en mesas individuales. Agradecemos el uso de audífonos durante llamadas para mantener una atmósfera de paz y concentración para todos.</p>
+
+        <h4>4. Contacto y Reclamaciones</h4>
+        <p>Cualquier solicitud, sugerencia o reclamo puede canalizarse directamente en la barra de atención o escribiendo a <em>contacto@almaygrano.cr</em>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Política de Privacidad -->
+  <div class="modal-overlay" id="modalPrivacidad">
+    <div class="modal-content">
+      <button class="modal-close" onclick="cerrarModal('modalPrivacidad')">✕</button>
+      <h3>Política de Privacidad y Protección de Datos</h3>
+      <div class="modal-body">
+        <p><strong>Conforme a la Ley N° 8968 de Costa Rica</strong></p>
+        <p>En Café Alma & Grano nos tomamos tu privacidad en serio. Esta política resume con transparencia qué datos personales te pedimos y cómo los protegemos:</p>
+
+        <h4>1. Datos que Recolectamos</h4>
+        <p>Únicamente solicitamos tu nombre, correo electrónico y número de personas con el fin exclusivo de gestionar tu reserva de mesa.</p>
+
+        <h4>2. Lo que NUNCA Recolectamos</h4>
+        <p>No almacenamos datos bancarios en texto plano, no solicitamos datos sensibles (salud, opiniones políticas) y no rastreamos tu comportamiento web fuera de nuestra página.</p>
+
+        <h4>3. Derechos del Usuario (ARCO)</h4>
+        <p>Tienes pleno derecho de acceso, rectificación, cancelación y supresión de tus datos. Puedes solicitar que eliminemos tus datos de reserva en cualquier momento escribiendo a <em>privacidad@almaygrano.cr</em>.</p>
+
+        <h4>4. Responsable de la Base de Datos</h4>
+        <p><strong>Responsable:</strong> Krishna Nahiel Moya Cervantes, Propietaria y Administradora de Datos de Café Alma & Grano.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h4>Café Alma & Grano</h4>
+        <p>Tostaduría de micro-lotes, repostería lenta y café de autor. San José, Costa Rica.</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem; color: #d0c5bc;">Horario: Lunes a Sábado de 7:30 am a 8:00 pm</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navegación</h5>
+        <ul>
+          <li><a href="#menu">Nuestra Carta</a></li>
+          <li><a href="#barista">Recomendador Barista</a></li>
+          <li><a href="#reservas">Reservar Mesa</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Políticas y Legal</h5>
+        <ul>
+          <li><a onclick="abrirModal('modalTerminos')">Términos y Condiciones</a></li>
+          <li><a onclick="abrirModal('modalPrivacidad')">Política de Privacidad (Ley 8968)</a></li>
+          <li><a href="docs/adr/README.md">Decisiones de Arquitectura (ADRs)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Café Alma & Grano · Todos los derechos reservados.</span>
+      <span>Gobernanza y Transparencia Tecnológica por Krishna Nahiel Moya Cervantes</span>
+    </div>
+  </footer>
+
+  <script>
+    function pedirBebida(nombre) {
+      alert('¡Has seleccionado ' + nombre + '! Podés agregarlo a tu reserva o solicitarlo al llegar.');
+    }
+
+    function recomendarCafe() {
+      const momento = document.getElementById('momento').value;
+      const perfil = document.getElementById('perfil').value;
+      const titulo = document.getElementById('resultadoNombre');
+      const desc = document.getElementById('resultadoDesc');
+
+      if (momento === 'manana' && perfil === 'chocolate') {
+        titulo.innerText = 'Doble Espresso Tarrazú & Croissant de Mantequilla';
+        desc.innerText = 'Un golpe limpio de energía con cuerpo sedoso y notas profundas de chocolate amargo.';
+      } else if (momento === 'tarde' && perfil === 'frutal') {
+        titulo.innerText = 'Filtrado Chemex Geisha & Tarta de Limón';
+        desc.innerText = 'Taza aromática con notas de jazmín y miel; perfecta para acompañar una tarde de lectura.';
+      } else if (momento === 'noche') {
+        titulo.innerText = 'Infusión de Cáscara de Café & Especias Dulces';
+        desc.innerText = 'Delicada, frutal y con un mínimo toque de cafeína para cerrar el día sin desvelarte.';
+      } else {
+        titulo.innerText = 'Flat White de la Casa & Galleta de Avena y Miel';
+        desc.innerText = 'Nuestra recomendación insignia: balance inmejorable entre café de especialidad y leche micro-texturizada.';
+      }
+    }
+
+    function abrirReservaConRecomendacion() {
+      const recom = document.getElementById('resultadoNombre').innerText;
+      document.getElementById('reservas').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function enviarReserva(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('resNombre').value;
+      document.getElementById('reservaForm').style.display = 'none';
+      const alerta = document.getElementById('alertaConfirmacion');
+      alerta.style.display = 'block';
+      alerta.innerHTML = `☕ ¡Gracias, <strong>${nombre}</strong>! Tu mesa ha sido reservada. Hemos registrado tus preferencias de manera segura.`;
+    }
+
+    function abrirModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function cerrarModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    // Cerrar al dar clic fuera del modal
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        event.target.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
